@@ -8,7 +8,7 @@ class Jasonbot
   end
 
   def throw
-    thrown = wilp5(get_score, @hands, @opponent_hands)
+    thrown = gamer4(get_score, @hands, @opponent_hands)
     @hands << thrown
     thrown
   end
@@ -51,6 +51,16 @@ class Jasonbot
     _wilp(round_score, hands, opponent_hands, 5)
   end
 
+  def _gamer(round_score, hands, opponent_hands, n)
+    results = hands.map.with_index { |hand, index| compare(hand, opponent_hands[index]) }.join
+    hand = wilp5(round_score, hands, opponent_hands)
+    (results =~ /(-1){#{ n }}(1)*$/).nil? ? hand : beat(beat(hand)) # /n losses followed by only wins/
+  end
+
+  def gamer4(round_score, hands, opponent_hands)
+    _gamer(round_score, hands, opponent_hands, 4)
+  end
+
   #
   # Logic ends
   #
@@ -69,6 +79,12 @@ class Jasonbot
     end
 
     score
+  end
+
+  def compare(a_hand, b_hand)
+    return 0 if a_hand == b_hand
+    return 1 if (a_hand == :rock && b_hand == :scissors) || (a_hand == :scissors && b_hand == :paper) || (a_hand == :paper && b_hand == :rock)
+    -1
   end
 
   def beat(hand)

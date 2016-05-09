@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jasonbot'
-  s.version     = '0.0.1'
-  s.date        = '2016-04-24'
+  s.version     = '0.0.2'
+  s.date        = '2016-05-08'
   s.summary     = 'jasonbot!'
   s.description = 'A simple roshambo gem'
   s.authors     = ['Jason Zhao']
@@ -10,4 +10,3 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/tcollier/roshambo'
   s.license       = 'MIT'
 end
-
